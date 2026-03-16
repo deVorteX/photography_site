@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About — Patrick Lower Photography</title>
+  <meta name="description" content="Learn about Patrick Lower — fine art and documentary photographer based in the United States.">
+  <link rel="canonical" href="https://www.patricklower.com/about.html">
+  <link rel="stylesheet" href="style.css">
+  <style>
+
+    /* ── ABOUT HERO ──────────────────────────────────── */
+    .about-hero {
+      position: relative;
+      height: 46vh;
+      min-height: 300px;
+      overflow: hidden;
+      display: flex;
+      align-items: flex-end;
+    }
+
+    .about-hero-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('https://images.unsplash.com/photo-1533093818119-ac1fa47a6d59?w=1800&q=80');
+      background-size: cover;
+      background-position: center 30%;
+      filter: brightness(0.6) saturate(0.7);
+    }
+
+    .about-hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(transparent 20%, rgba(249,247,244,0.6) 70%, var(--cream) 100%);
+    }
+
+    .about-hero-content {
+      position: relative;
+      z-index: 2;
+      padding: 0 5vw 5vh;
+    }
+
+    .about-hero-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: clamp(3rem, 7vw, 6rem);
+      line-height: 1;
+      color: var(--ink);
+    }
+
+    .about-hero-name em {
+      font-style: italic;
+      color: var(--ink-mid);
+    }
+
+    /* ── ABOUT LAYOUT ────────────────────────────────── */
+    .about-main {
+      padding: 6rem 5vw;
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 8rem;
+      align-items: start;
+    }
+
+    /* LEFT: photo + quick facts */
+    .about-portrait {
+      position: sticky;
+      top: calc(var(--nav-h) + 2rem);
+    }
+
+    .about-photo-wrap {
+      position: relative;
+      margin-bottom: 2.5rem;
+    }
+
+    .about-photo-wrap img {
+      width: 100%;
+      aspect-ratio: 4/5;
+      object-fit: cover;
+      object-position: top;
+      filter: saturate(0.85);
+    }
+
+    /* Decorative rule corner */
+    .about-photo-wrap::before {
+      content: '';
+      position: absolute;
+      top: -12px; left: -12px;
+      width: 60px; height: 60px;
+      border-top: 1px solid var(--accent);
+      border-left: 1px solid var(--accent);
+    }
+
+    .about-photo-wrap::after {
+      content: '';
+      position: absolute;
+      bottom: -12px; right: -12px;
+      width: 60px; height: 60px;
+      border-bottom: 1px solid var(--accent);
+      border-right: 1px solid var(--accent);
+    }
+
+    .quick-facts {
+      border-top: 1px solid var(--rule);
+      padding-top: 1.5rem;
+    }
+
+    .fact-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.8rem 0;
+      border-bottom: 1px solid var(--rule);
+      font-size: 0.85rem;
+    }
+
+    .fact-label {
+      color: var(--ink-light);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-size: 0.7rem;
+    }
+
+    .fact-value {
+      color: var(--ink);
+      text-align: right;
+    }
+
+    /* RIGHT: bio text */
+    .about-bio h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: clamp(1.8rem, 3vw, 2.8rem);
+      line-height: 1.2;
+      margin-bottom: 2rem;
+    }
+
+    .about-bio p {
+      font-size: 1rem;
+      line-height: 1.85;
+      color: var(--ink-mid);
+      margin-bottom: 1.4rem;
+    }
+
+    .about-bio p:first-of-type {
+      font-size: 1.1rem;
+      color: var(--ink);
+    }
+
+    .about-bio .pull-quote {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 1.5rem;
+      color: var(--ink);
+      line-height: 1.45;
+      border-left: 2px solid var(--accent);
+      padding-left: 1.5rem;
+      margin: 2.5rem 0;
+    }
+
+    /* ── PROCESS SECTION ─────────────────────────────── */
+    .process {
+      padding: 0 5vw 8rem;
+    }
+
+    .process-head {
+      margin-bottom: 3rem;
+    }
+
+    .process-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: clamp(1.8rem, 3vw, 2.8rem);
+    }
+
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--rule);
+      border: 1px solid var(--rule);
+    }
+
+    .process-card {
+      background: var(--cream);
+      padding: 2.5rem 2rem;
+      transition: background 0.25s;
+    }
+
+    .process-card:hover { background: var(--white); }
+
+    .process-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3rem;
+      font-weight: 300;
+      color: var(--rule);
+      line-height: 1;
+      margin-bottom: 1rem;
+    }
+
+    .process-card-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem;
+      margin-bottom: 0.8rem;
+      color: var(--ink);
+    }
+
+    .process-card-text {
+      font-size: 0.88rem;
+      line-height: 1.7;
+      color: var(--ink-mid);
+    }
+
+    /* ── GEAR ────────────────────────────────────────── */
+    .gear-section {
+      background: var(--white);
+      border-top: 1px solid var(--rule);
+      border-bottom: 1px solid var(--rule);
+      padding: 5rem 5vw;
+    }
+
+    .gear-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: clamp(1.8rem, 3vw, 2.5rem);
+      margin-bottom: 2.5rem;
+    }
+
+    .gear-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 1rem;
+    }
+
+    .gear-item {
+      padding: 1.2rem 1.4rem;
+      border: 1px solid var(--rule);
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+    }
+
+    .gear-name {
+      font-size: 0.92rem;
+      font-weight: 400;
+      color: var(--ink);
+    }
+
+    .gear-type {
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--ink-light);
+    }
+
+    /* ── CTA ─────────────────────────────────────────── */
+    .about-cta {
+      padding: 7rem 5vw;
+      text-align: center;
+    }
+
+    .about-cta h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: clamp(2rem, 4vw, 3.5rem);
+      margin-bottom: 1.2rem;
+    }
+
+    .about-cta p {
+      color: var(--ink-mid);
+      max-width: 420px;
+      margin: 0 auto 2rem;
+      line-height: 1.7;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 0.8rem 2rem;
+      font-family: 'Jost', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 400;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      border-radius: 1px;
+      transition: all 0.25s;
+    }
+
+    .btn-dark { background: var(--ink); color: var(--cream); }
+    .btn-dark:hover { background: var(--ink-mid); }
+
+    @media (max-width: 900px) {
+      .about-main { grid-template-columns: 1fr; gap: 3rem; }
+      .about-portrait { position: static; }
+      .about-photo-wrap img { aspect-ratio: 3/2; }
+      .process-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body class="page-body">
+
+<!-- NAV -->
+<nav class="site-nav">
+  <a href="index.html" class="nav-brand">Patrick <span>Lower</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="albums/nature.html">Nature</a></li>
+    <li><a href="albums/landscape.html">Landscape</a></li>
+    <li><a href="albums/urban.html">Urban</a></li>
+    <li><a href="albums/portrait.html">Portrait</a></li>
+    <li><a href="about.html" class="active">About</a></li>
+  </ul>
+  <button class="nav-toggle" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- HERO -->
+<section class="about-hero">
+  <div class="about-hero-bg"></div>
+  <div class="about-hero-content">
+    <p class="section-eyebrow">About the Photographer</p>
+    <h1 class="about-hero-name">Patrick <em>Lower</em></h1>
+  </div>
+</section>
+
+<!-- MAIN BIO -->
+<section class="about-main">
+
+  <div class="about-portrait reveal">
+    <div class="about-photo-wrap">
+      <img
+        src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=600&q=80"
+        alt="Patrick Lower — Photographer"
+      >
+    </div>
+    <div class="quick-facts">
+      <div class="fact-item">
+        <span class="fact-label">Based In</span>
+        <span class="fact-value">United States</span>
+      </div>
+      <div class="fact-item">
+        <span class="fact-label">Disciplines</span>
+        <span class="fact-value">Nature, Landscape, Urban, Portrait</span>
+      </div>
+      <div class="fact-item">
+        <span class="fact-label">Platforms</span>
+        <span class="fact-value">Instagram · YouTube</span>
+      </div>
+      <div class="fact-item">
+        <span class="fact-label">Available For</span>
+        <span class="fact-value">Commissions &amp; Collaboration</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="about-bio">
+    <h2 class="reveal">A photographer who finds<br>beauty in the overlooked.</h2>
+
+    <p class="reveal">
+      Patrick Lower is an independent photographer with a deep curiosity for the world's quieter moments — 
+      the misty ridge at dawn, the wet pavement after rain, the expression that crosses a face in between words.
+    </p>
+
+    <p class="reveal">
+      His work spans four disciplines: nature and wildlife, travel and landscape, urban architecture, and 
+      intimate portraiture. While each category demands its own patience and approach, a common thread runs 
+      through all of it — an eye for light, and a belief that the most compelling photographs are often the 
+      ones that feel almost accidental.
+    </p>
+
+    <blockquote class="pull-quote reveal">
+      "I don't chase the obvious shot. I wait for the one that arrives when you've almost given up."
+    </blockquote>
+
+    <p class="reveal">
+      Patrick's landscape work takes him across continents — from the granite faces of the Swiss Alps to the 
+      dune seas of the Sahara — always with a minimal kit and a preference for the hours most photographers sleep 
+      through. His wildlife work is observational rather than interventionist; the camera is a tool for attention, 
+      not intrusion.
+    </p>
+
+    <p class="reveal">
+      In cities, Patrick is drawn to geometry, repetition, and the human figure as scale reference — the lone 
+      pedestrian beneath a glass tower, the tunnel's vanishing point. His portrait work, by contrast, is close 
+      and still, often made with available light in unremarkable locations that somehow become luminous.
+    </p>
+
+    <p class="reveal">
+      He shares his process, travels, and behind-the-scenes work on Instagram and YouTube — an ongoing 
+      record of what it means to look carefully at the world.
+    </p>
+  </div>
+
+</section>
+
+<!-- PROCESS -->
+<section class="process">
+  <div class="process-head reveal">
+    <p class="section-eyebrow">How I Work</p>
+    <h2 class="process-title">The Process</h2>
+  </div>
+  <div class="process-grid">
+    <div class="process-card reveal">
+      <div class="process-num">01</div>
+      <div class="process-card-title">Observe First</div>
+      <p class="process-card-text">Before raising the camera, I spend time in a location — reading the light, understanding the rhythm of movement, finding what doesn't belong and what does. Patience is the prerequisite.</p>
+    </div>
+    <div class="process-card reveal">
+      <div class="process-num">02</div>
+      <div class="process-card-title">Minimal Gear</div>
+      <p class="process-card-text">A lighter bag means more freedom and less hesitation. I shoot with a small selection of prime lenses. Constraints sharpen vision — the right focal length teaches you how to think in frames.</p>
+    </div>
+    <div class="process-card reveal">
+      <div class="process-num">03</div>
+      <div class="process-card-title">Restrained Edit</div>
+      <p class="process-card-text">Post-processing should serve the photograph, not define it. I aim to preserve the feeling of the moment — real light, real color, real atmosphere — with only enough correction to honour what was there.</p>
+    </div>
+  </div>
+</section>
+
+<!-- GEAR -->
+<section class="gear-section">
+  <div class="reveal">
+    <p class="section-eyebrow">Equipment</p>
+    <h2 class="gear-title">What's in the Bag</h2>
+  </div>
+  <div class="gear-list">
+    <div class="gear-item reveal">
+      <span class="gear-name">Sony A7R V</span>
+      <span class="gear-type">Primary Body</span>
+    </div>
+    <div class="gear-item reveal">
+      <span class="gear-name">Sony A7C II</span>
+      <span class="gear-type">Travel / Backup Body</span>
+    </div>
+    <div class="gear-item reveal">
+      <span class="gear-name">Sony 24mm f/1.4 GM</span>
+      <span class="gear-type">Wide Prime</span>
+    </div>
+    <div class="gear-item reveal">
+      <span class="gear-name">Sony 85mm f/1.4 GM</span>
+      <span class="gear-type">Portrait Prime</span>
+    </div>
+    <div class="gear-item reveal">
+      <span class="gear-name">Sony 70–200mm f/2.8 GM II</span>
+      <span class="gear-type">Wildlife / Telephoto</span>
+    </div>
+    <div class="gear-item reveal">
+      <span class="gear-name">DJI Mini 4 Pro</span>
+      <span class="gear-type">Aerial</span>
+    </div>
+    <div class="gear-item reveal">
+      <span class="gear-name">Capture One Pro</span>
+      <span class="gear-type">RAW Processing</span>
+    </div>
+    <div class="gear-item reveal">
+      <span class="gear-name">Gitzo Traveler Tripod</span>
+      <span class="gear-type">Support</span>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="about-cta">
+  <h2 class="reveal">Want to work together?</h2>
+  <p class="reveal">Open to commissions, editorial assignments, and creative collaborations. Reach out — I'd love to hear what you're working on.</p>
+  <div class="reveal">
+    <a href="mailto:hello@patricklower.com" class="btn btn-dark">Get In Touch</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="footer-brand">Patrick Lower</div>
+  <div class="footer-social">
+    <a href="https://www.instagram.com/" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" fill="none" stroke-width="1.5">
+        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+        <circle cx="12" cy="12" r="4"/>
+        <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" stroke="none"/>
+      </svg>
+      Instagram
+    </a>
+    <a href="https://www.youtube.com/" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" fill="none" stroke-width="1.5">
+        <path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.95 1.96C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.96A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/>
+        <polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="var(--cream)" stroke="none"/>
+      </svg>
+      YouTube
+    </a>
+  </div>
+  <div class="footer-copy">© 2025 Patrick Lower. All rights reserved.</div>
+</footer>
+
+<script src="main.js"></script>
+</body>
+</html>

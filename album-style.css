@@ -1,0 +1,140 @@
+/* Album page specific styles */
+.album-hero {
+  position: relative;
+  height: 52vh;
+  min-height: 340px;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+}
+
+.album-hero-img {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  filter: brightness(0.72) saturate(0.9);
+  transform: scale(1.03);
+  transition: transform 8s ease;
+}
+
+.album-hero-img.loaded { transform: scale(1.0); }
+
+.album-hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(transparent 30%, rgba(249,247,244,0.7) 80%, var(--cream) 100%);
+}
+
+.album-hero-content {
+  position: relative;
+  z-index: 2;
+  padding: 0 5vw 4vh;
+}
+
+.album-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-size: clamp(2.5rem, 6vw, 5rem);
+  line-height: 1;
+  color: var(--ink);
+}
+
+.album-desc {
+  margin-top: 0.8rem;
+  font-size: 0.9rem;
+  color: var(--ink-mid);
+  max-width: 440px;
+  line-height: 1.7;
+}
+
+.breadcrumb {
+  padding: 1.2rem 5vw;
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  color: var(--ink-light);
+  border-bottom: 1px solid var(--rule);
+}
+
+.breadcrumb a { transition: color 0.2s; }
+.breadcrumb a:hover { color: var(--ink); }
+.breadcrumb span { margin: 0 0.5rem; }
+
+.gallery-section { padding: 4rem 5vw 8rem; }
+
+.gallery-grid {
+  columns: 3;
+  column-gap: 12px;
+}
+
+.gallery-item {
+  break-inside: avoid;
+  margin-bottom: 12px;
+  overflow: hidden;
+  position: relative;
+  background: var(--rule);
+  display: block;
+}
+
+.gallery-item img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.6s ease, filter 0.4s ease;
+  filter: saturate(0.88);
+}
+
+.gallery-item:hover img { transform: scale(1.03); filter: saturate(1.05); }
+
+.gallery-item-meta {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  padding: 2rem 1rem 0.9rem;
+  background: linear-gradient(transparent, rgba(249,247,244,0.85));
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.gallery-item:hover .gallery-item-meta { opacity: 1; }
+
+.gallery-item-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1rem;
+  color: var(--ink);
+}
+
+.gallery-item-location {
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-light);
+  margin-top: 0.15rem;
+}
+
+.album-nav-strip {
+  background: var(--white);
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+  padding: 1.4rem 5vw;
+  display: flex;
+  gap: 2rem;
+  overflow-x: auto;
+}
+
+.album-nav-strip a {
+  font-size: 0.76rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-light);
+  white-space: nowrap;
+  padding-bottom: 4px;
+  border-bottom: 1px solid transparent;
+  transition: all 0.2s;
+}
+
+.album-nav-strip a:hover,
+.album-nav-strip a.current { color: var(--ink); border-bottom-color: var(--accent); }
+
+@media (max-width: 768px) { .gallery-grid { columns: 2; } }
+@media (max-width: 480px)  { .gallery-grid { columns: 1; } }
