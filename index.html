@@ -7,342 +7,6 @@
   <meta name="description" content="Patrick Lower — fine art and documentary photography across nature, landscape, urban, and portrait disciplines.">
   <link rel="canonical" href="https://www.patricklower.com/">
   <link rel="stylesheet" href="style.css">
-  <style>
-    /* ── HERO ────────────────────────────────────────── */
-    .hero {
-      position: relative;
-      height: 100svh;
-      min-height: 540px;
-      overflow: hidden;
-      display: flex;
-      align-items: flex-end;
-    }
-
-    .hero-slides { position: absolute; inset: 0; }
-
-    .hero-slide {
-      position: absolute;
-      inset: 0;
-      background-size: cover;
-      background-position: center;
-      opacity: 0;
-      transform: scale(1.04);
-      transition: opacity 1.2s ease, transform 6s ease;
-    }
-
-    .hero-slide.active {
-      opacity: 1;
-      transform: scale(1.0);
-    }
-
-    .hero-slide::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(
-        to bottom,
-        rgba(249,247,244,0.04) 0%,
-        rgba(249,247,244,0.0)  40%,
-        rgba(249,247,244,0.55) 80%,
-        rgba(249,247,244,0.92) 100%
-      );
-    }
-
-    .hero-content {
-      position: relative;
-      z-index: 2;
-      padding: 0 5vw 6vh;
-      max-width: 780px;
-    }
-
-    .hero-eyebrow {
-      font-size: 0.72rem;
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 1rem;
-      opacity: 0;
-      animation: fadeUp 0.9s 0.3s forwards;
-    }
-
-    .hero-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-weight: 300;
-      font-size: clamp(3.2rem, 8vw, 7rem);
-      line-height: 0.95;
-      letter-spacing: -0.01em;
-      color: var(--ink);
-      opacity: 0;
-      animation: fadeUp 0.9s 0.5s forwards;
-    }
-
-    .hero-title em {
-      font-style: italic;
-      color: var(--ink-mid);
-    }
-
-    .hero-sub {
-      margin-top: 1.4rem;
-      font-size: 0.95rem;
-      color: var(--ink-mid);
-      max-width: 380px;
-      line-height: 1.7;
-      opacity: 0;
-      animation: fadeUp 0.9s 0.75s forwards;
-    }
-
-    .hero-cta {
-      margin-top: 2.2rem;
-      display: flex;
-      gap: 1rem;
-      flex-wrap: wrap;
-      opacity: 0;
-      animation: fadeUp 0.9s 1s forwards;
-    }
-
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-
-    /* slide indicators */
-    .hero-dots {
-      position: absolute;
-      bottom: 2.5rem;
-      right: 5vw;
-      z-index: 3;
-      display: flex;
-      gap: 8px;
-    }
-
-    .hero-dot {
-      width: 28px; height: 2px;
-      background: var(--ink-light);
-      cursor: pointer;
-      transition: background 0.3s, width 0.3s;
-    }
-
-    .hero-dot.active {
-      background: var(--ink);
-      width: 48px;
-    }
-
-    /* ── BUTTONS ─────────────────────────────────────── */
-    .btn {
-      display: inline-block;
-      padding: 0.75rem 2rem;
-      font-family: 'Jost', sans-serif;
-      font-size: 0.8rem;
-      font-weight: 400;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      border-radius: 1px;
-      transition: all 0.25s;
-    }
-
-    .btn-dark {
-      background: var(--ink);
-      color: var(--cream);
-    }
-    .btn-dark:hover { background: var(--ink-mid); }
-
-    .btn-outline {
-      border: 1px solid var(--ink);
-      color: var(--ink);
-    }
-    .btn-outline:hover { background: var(--ink); color: var(--cream); }
-
-    /* ── FEATURED SECTION ────────────────────────────── */
-    .featured {
-      padding: 8rem 5vw;
-    }
-
-    .featured-head {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
-      margin-bottom: 3.5rem;
-      flex-wrap: wrap;
-      gap: 1rem;
-    }
-
-    .featured-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-weight: 300;
-      font-size: clamp(2rem, 4vw, 3.2rem);
-      line-height: 1.1;
-    }
-
-    .view-all {
-      font-size: 0.78rem;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: var(--ink-mid);
-      border-bottom: 1px solid var(--rule);
-      padding-bottom: 2px;
-      transition: color 0.2s, border-color 0.2s;
-    }
-    .view-all:hover { color: var(--ink); border-color: var(--accent); }
-
-    /* Asymmetric featured grid */
-    .feat-grid {
-      display: grid;
-      grid-template-columns: 1.6fr 1fr;
-      grid-template-rows: 420px 280px;
-      gap: 12px;
-    }
-
-    .feat-item {
-      overflow: hidden;
-      position: relative;
-      background: var(--rule);
-    }
-
-    .feat-item:first-child {
-      grid-row: 1 / 3;
-    }
-
-    .feat-item img {
-      width: 100%; height: 100%;
-      object-fit: cover;
-      transition: transform 0.7s ease;
-    }
-
-    .feat-item:hover img { transform: scale(1.04); }
-
-    .feat-item-label {
-      position: absolute;
-      bottom: 0; left: 0; right: 0;
-      padding: 2rem 1.5rem 1.2rem;
-      background: linear-gradient(transparent, rgba(249,247,244,0.88));
-      opacity: 0;
-      transition: opacity 0.3s;
-    }
-
-    .feat-item:hover .feat-item-label { opacity: 1; }
-
-    .feat-item-cat {
-      font-size: 0.68rem;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 0.3rem;
-    }
-
-    .feat-item-name {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.1rem;
-      color: var(--ink);
-    }
-
-    /* ── ALBUMS STRIP ────────────────────────────────── */
-    .albums-strip {
-      padding: 0 5vw 8rem;
-    }
-
-    .strip-head {
-      margin-bottom: 2.5rem;
-    }
-
-    .strip-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-weight: 300;
-      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
-    }
-
-    .albums-row {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 16px;
-    }
-
-    .album-thumb {
-      display: block;
-      position: relative;
-      overflow: hidden;
-      aspect-ratio: 3/4;
-      background: var(--rule);
-    }
-
-    .album-thumb img {
-      width: 100%; height: 100%;
-      object-fit: cover;
-      transition: transform 0.6s ease;
-      filter: saturate(0.9);
-    }
-
-    .album-thumb:hover img { transform: scale(1.05); filter: saturate(1); }
-
-    .album-thumb-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(transparent 50%, rgba(249,247,244,0.85) 100%);
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      padding: 1.4rem 1.2rem;
-    }
-
-    .album-thumb-name {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.15rem;
-      font-weight: 400;
-      color: var(--ink);
-      letter-spacing: 0.02em;
-    }
-
-    .album-thumb-count {
-      font-size: 0.7rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--ink-light);
-      margin-top: 0.2rem;
-    }
-
-    /* ── QUOTE / PHILOSOPHY ──────────────────────────── */
-    .philosophy {
-      border-top: 1px solid var(--rule);
-      border-bottom: 1px solid var(--rule);
-      padding: 7rem 5vw;
-      text-align: center;
-    }
-
-    .philosophy blockquote {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(1.6rem, 3.5vw, 2.8rem);
-      font-weight: 300;
-      font-style: italic;
-      line-height: 1.45;
-      max-width: 760px;
-      margin: 0 auto;
-      color: var(--ink);
-    }
-
-    .philosophy cite {
-      display: block;
-      margin-top: 2rem;
-      font-family: 'Jost', sans-serif;
-      font-style: normal;
-      font-size: 0.78rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--ink-light);
-    }
-
-    @media (max-width: 900px) {
-      .feat-grid {
-        grid-template-columns: 1fr 1fr;
-        grid-template-rows: 300px 200px;
-      }
-      .feat-item:first-child { grid-row: auto; }
-      .albums-row { grid-template-columns: repeat(2,1fr); }
-    }
-
-    @media (max-width: 600px) {
-      .feat-grid { grid-template-columns: 1fr; grid-template-rows: repeat(3, 260px); }
-      .albums-row { grid-template-columns: repeat(2,1fr); gap: 10px; }
-    }
-  </style>
 </head>
 <body class="page-body">
 
@@ -365,10 +29,10 @@
 <!-- HERO -->
 <section class="hero">
   <div class="hero-slides">
-    <div class="hero-slide active" style="background-image:url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1800&q=80')"></div>
-    <div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=1800&q=80')"></div>
-    <div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=1800&q=80')"></div>
-    <div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1531804055935-76f44d7c3621?w=1800&q=80')"></div>
+    <div class="hero-slide active" style="background-image:url('/images/DSC03692_sharing.jpg')"></div>
+    <div class="hero-slide" style="background-image:url('/images/DSC01980_sharing.jpg')"></div>
+    <div class="hero-slide" style="background-image:url('/images/DSC08091_sharing.jpg')"></div>
+    <div class="hero-slide" style="background-image:url('/images/DSC04527_sharing.jpg')"></div>
   </div>
 
   <div class="hero-content">
@@ -376,7 +40,7 @@
     <h1 class="hero-title">Patrick<br><em>Lower</em></h1>
     <p class="hero-sub">Capturing the quiet, the vast, and the human — one frame at a time.</p>
     <div class="hero-cta">
-      <a href="albums/nature.html" class="btn btn-dark">Explore the Work</a>
+      <a href="albums/nature.html" class="btn btn-dark">Explore my Work</a>
       <a href="about.html" class="btn btn-outline">About Patrick</a>
     </div>
   </div>
@@ -397,41 +61,41 @@
   <div class="feat-grid">
     <div class="feat-item reveal">
       <img
-        src="https://images.unsplash.com/photo-1504700610630-ac6aba3536d3?w=900&q=80"
-        alt="Golden hour over misty mountains"
+        src="/images/DSC09043_sharing.jpg"
+        alt="Elephant in Ngorongoro Crater"
         data-lightbox
-        data-src="https://images.unsplash.com/photo-1504700610630-ac6aba3536d3?w=1400&q=85"
-        data-caption="Golden Hour — Travel & Landscape"
-      >
-      <div class="feat-item-label">
-        <div class="feat-item-cat">Travel & Landscape</div>
-        <div class="feat-item-name">Golden Hour</div>
-      </div>
-    </div>
-    <div class="feat-item reveal">
-      <img
-        src="https://images.unsplash.com/photo-1474511320723-9a56873867b5?w=700&q=80"
-        alt="Fox in autumn forest"
-        data-lightbox
-        data-src="https://images.unsplash.com/photo-1474511320723-9a56873867b5?w=1400&q=85"
-        data-caption="Autumn Fox — Nature & Wildlife"
+        data-src="/images/DSC09043_sharing.jpg"
+        data-caption="Lone Elephant — Nature & Wildlife"
       >
       <div class="feat-item-label">
         <div class="feat-item-cat">Nature & Wildlife</div>
-        <div class="feat-item-name">Autumn Fox</div>
+        <div class="feat-item-name">Lone Elephant</div>
       </div>
     </div>
     <div class="feat-item reveal">
       <img
-        src="https://images.unsplash.com/photo-1519501025264-65ba15a82390?w=700&q=80"
-        alt="Rainy city street at night"
+        src="/images/DSC00730_sharing.jpg"
+        alt="Cathedral-Basilica of Our Lady of the Pillar in Zaragoza, Spain"
         data-lightbox
-        data-src="https://images.unsplash.com/photo-1519501025264-65ba15a82390?w=1400&q=85"
-        data-caption="Rain on Glass — Urban & Architecture"
+        data-src="/images/DSC00730_sharing.jpg"
+        data-caption="Cathedral-Basilica of Our Lady of the Pillar — Architecture"
       >
       <div class="feat-item-label">
-        <div class="feat-item-cat">Urban & Architecture</div>
-        <div class="feat-item-name">Rain on Glass</div>
+        <div class="feat-item-cat">Architecture</div>
+        <div class="feat-item-name">Cathedral-Basilica of Our Lady of the Pillar</div>
+      </div>
+    </div>
+    <div class="feat-item reveal">
+      <img
+        src="/images/DSC06424_sharing.jpg"
+        alt="German Hillside"
+        data-lightbox
+        data-src="/images/DSC06424_sharing.jpg"
+        data-caption="German Hillside — Landscape & Travel"
+      >
+      <div class="feat-item-label">
+        <div class="feat-item-cat">Landscape & Travel</div>
+        <div class="feat-item-name">German Hillside</div>
       </div>
     </div>
   </div>
@@ -445,28 +109,28 @@
   </div>
   <div class="albums-row">
     <a href="albums/nature.html" class="album-thumb reveal">
-      <img src="https://images.unsplash.com/photo-1448375240586-882707db888b?w=600&q=80" alt="Nature & Wildlife">
+      <img src="/images/DSC00119_sharing.jpg" alt="Nature & Wildlife">
       <div class="album-thumb-overlay">
         <div class="album-thumb-name">Nature &amp; Wildlife</div>
         <div class="album-thumb-count">View Album</div>
       </div>
     </a>
     <a href="albums/landscape.html" class="album-thumb reveal">
-      <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=600&q=80" alt="Travel & Landscape">
+      <img src="/images/DSC01239_sharing.jpg" alt="Travel & Landscape">
       <div class="album-thumb-overlay">
         <div class="album-thumb-name">Travel &amp; Landscape</div>
         <div class="album-thumb-count">View Album</div>
       </div>
     </a>
     <a href="albums/urban.html" class="album-thumb reveal">
-      <img src="https://images.unsplash.com/photo-1486325212027-8081e485255e?w=600&q=80" alt="Urban & Architecture">
+      <img src="/images/DSC04247_sharing.jpg" alt="Urban & Architecture">
       <div class="album-thumb-overlay">
         <div class="album-thumb-name">Urban &amp; Architecture</div>
         <div class="album-thumb-count">View Album</div>
       </div>
     </a>
     <a href="albums/portrait.html" class="album-thumb reveal">
-      <img src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=600&q=80" alt="Portrait & People">
+      <img src="/images/DSC06094_sharing.jpg" alt="Portrait & People">
       <div class="album-thumb-overlay">
         <div class="album-thumb-name">Portrait &amp; People</div>
         <div class="album-thumb-count">View Album</div>
@@ -487,14 +151,14 @@
 <footer class="site-footer">
   <div class="footer-brand">Patrick Lower</div>
   <div class="footer-social">
-    <a href="https://www.instagram.com/" target="_blank" rel="noopener">
+    <a href="https://www.instagram.com/patricklowerphotography" target="_blank" rel="noopener">
       <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" stroke="none"/></svg>
       Instagram
     </a>
-    <a href="https://www.youtube.com/" target="_blank" rel="noopener">
+    <!--<a href="https://www.youtube.com/" target="_blank" rel="noopener">
       <svg viewBox="0 0 24 24"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.95 1.96C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.96A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="var(--cream)" stroke="none"/></svg>
       YouTube
-    </a>
+    </a>-->
   </div>
   <div class="footer-copy">© 2025 Patrick Lower. All rights reserved.</div>
 </footer>
