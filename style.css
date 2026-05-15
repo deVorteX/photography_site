@@ -101,6 +101,10 @@ a   { color: inherit; text-decoration: none; }
   gap: 5px;
   cursor: pointer;
   padding: 4px;
+  background: none;
+  border: none;
+  align-items: center;
+  justify-content: center;
 }
 .nav-toggle span {
   display: block;
@@ -832,24 +836,27 @@ a   { color: inherit; text-decoration: none; }
 
 /* ── RESPONSIVE ──────────────────────────────────────── */
 @media (max-width: 768px) {
-  .nav-toggle { display: flex; }
+  .nav-toggle { 
+    display: flex !important;
+    visibility: visible !important;
+    height: var(--nav-h);
+    width: 44px;
+  }
 
   .nav-links {
+    display: none;
     position: fixed;
-    top: var(--nav-h); left: 0; right: 0;
+    top: 0; left: 0; right: 0;
     flex-direction: column;
     gap: 0;
     background: var(--cream);
     border-bottom: 1px solid var(--rule);
     padding: 1rem 0;
-    transform: translateY(-110%);
-    transition: transform 0.35s ease;
-    pointer-events: none;
+    z-index: 199;
   }
 
   .nav-links.open {
-    transform: translateY(0);
-    pointer-events: all;
+    display: flex;
   }
 
   .nav-links li { width: 100%; text-align: center; }
